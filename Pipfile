@@ -10,7 +10,6 @@ django = "*"
 pylint = "*"
 pytz = "*"
 pylint-django = "*"
-django-taggit = "*"
 
 [requires]
 python_version = "3.7"
