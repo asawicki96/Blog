@@ -131,3 +131,6 @@ dmypy.json
 .vscode
 .git
 __pycache__
+.migrations
+db.sqlite3
+
