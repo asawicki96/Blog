@@ -32,8 +32,9 @@ EMAIL_HOST_USER = 'emailhostadas@gmail.com'
 EMAIL_HOST_PASSWORD = 'adas1996'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-# Application definition
+SITE_ID = 1
 
+# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     'taggit',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
 ]
 
 MIDDLEWARE = [
