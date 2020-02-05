@@ -5,4 +5,4 @@ Used technologies:
 *taggit
 *markdown.
 
-This repo is product of learning from the book.
+This repo is product of learning.
