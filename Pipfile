@@ -11,6 +11,9 @@ pylint = "*"
 pytz = "*"
 pylint-django = "*"
 markdown = "*"
+django-haystack = "*"
+pysolr = "*"
+requirements-txt = "*"
 
 [requires]
 python_version = "3.7"

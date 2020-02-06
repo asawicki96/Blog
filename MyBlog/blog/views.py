@@ -2,10 +2,11 @@ from django.shortcuts import render, get_object_or_404
 from .models import Post, Comment
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView
-from .forms import EmailPostForm, CommentForm
+from .forms import EmailPostForm, CommentForm, SearchForm
 from django.core.mail import send_mail
 from taggit.models import Tag
 from django.db.models import Count
+from haystack.query import SearchQuerySet
 # Create your views here.
 
 def post_list(request, tag_slug=None):
@@ -82,10 +83,10 @@ def post_share(request, post_id):
         form = EmailPostForm()
         cd = None
     return render(request, 'blog/post/share.html',
-                                                {'post': post,
-                                                 'form': form,
-                                                 'sent': sent,
-                                                 'cd': cd})
+                    {'post': post,
+                     'form': form,
+                     'sent': sent,
+                     'cd': cd})
 
 
 class PostListView(ListView):
@@ -94,4 +95,22 @@ class PostListView(ListView):
     paginate_by = 3
     template_name = 'blog/post/list.html'
 
-    
+
+def post_search(request):
+    form = SearchForm()
+    if 'query' in request.GET:
+        form = SearchForm(request.GET)
+        if form.is_valid():
+            cd = form.cleaned_data
+            results = Post.published.filter(title__icontains=cd['query'])
+            total_results = results.count()
+            return render(request,
+                'blog/post/search.html',
+                {'form': form,
+                'cd': cd,
+                'results': results,
+                'total_results': total_results})
+    else:
+        return render(request,
+            'blog/post/search.html',
+            {'form': form})
