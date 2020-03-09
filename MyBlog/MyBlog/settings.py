@@ -27,10 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'emailhostadas@gmail.com'
-EMAIL_HOST_PASSWORD = 'adas1996'
-EMAIL_PORT = 587
+EMAIL_HOST = os.getenv('email_host')
+EMAIL_HOST_USER = os.getenv('email_host_user')
+EMAIL_HOST_PASSWORD = os.getenv('email_host_password')
+EMAIL_PORT = os.getenv('email_port')
 EMAIL_USE_TLS = True
 SITE_ID = 1
 
@@ -134,4 +134,4 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = os.getenv('estatic_url')
